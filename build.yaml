@@ -20,13 +20,3 @@ functions:
     run:
       - $(build)
       - $(push)
-
-  - name: testup
-    run:
-      - docker rm ${GROUP}/${APP}:${TAG} -f
-      - docker run -d -p 8000:8000 -v ${PWD}/test:/files ${GROUP}/${APP}:${TAG}
-      - curl localhost:8000
-
-  - name: testdown
-    run:
-      - docker rm ${GROUP}/${APP}:${TAG} -f

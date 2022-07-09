@@ -1,7 +1,10 @@
-FROM scratch
-
-COPY ./art /go/bin/art
+FROM alpine
 
 WORKDIR /files
+VOLUME /files
+EXPOSE 8000
 
-CMD ["/go/bin/art","serve","-p","8000","-l"]
+COPY ./entrypoint.sh /
+COPY ./art /usr/bin/art
+
+ENTRYPOINT ["/entrypoint.sh"]
